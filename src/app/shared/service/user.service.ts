@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
 
 
 @Injectable({
@@ -7,7 +7,7 @@ import { HttpHeaders, HttpClient, HttpClientModule } from '@angular/common/http'
 })
 export class UserService {
 
-  apiUrl = 'http://localhost:8989/rest.v1/user/all-users';
+  apiUrl = 'http://localhost:8989/rest.v1/user';
   httpOptions = {
     header : new HttpHeaders(
       {
@@ -25,12 +25,31 @@ export class UserService {
   {
     let headers = new HttpHeaders().set('Type-content','aplication/json');
 
-    return this.httpCliente.get(this.apiUrl,{headers:headers});
+    return this.httpCliente.get(this.apiUrl+"/all-users",{headers:headers});
   }
 
   public login(email : string, password : string)
   {
+    let params = new HttpParams().set('email',email).set('password',password);
+    let headers = new HttpHeaders().set('Type-content','aplication/json');
 
+    return this.httpCliente.post(this.apiUrl+"/login",{headers:headers},{params});
+  }
+
+  public create(firstName:string,lastName:string,email:string,password:string)
+  {
+    
+
+    let body ={
+      'firstName':firstName,
+    'lastName':lastName,
+    'email':email,
+    'password':password
+    };
+
+    let headers = new HttpHeaders().set('Type-content','aplication/json');
+
+    return this.httpCliente.post(this.apiUrl+"/create",body,{headers:headers});
   }
 
   public logout(token : string)

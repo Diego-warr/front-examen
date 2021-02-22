@@ -2,26 +2,28 @@
     <mat-card  style="width: 400px;" >
         <div  fxLayout="column" fxLayoutAlign="center center" >
             <h3>REGISTER</h3>
-            <mat-form-field class="example-form-field">
-                <mat-label>First name</mat-label>
-                <input matInput type="text" >
-            
-            </mat-form-field>
-            <mat-form-field class="example-form-field">
-                <mat-label>Last name</mat-label>
-                <input matInput type="text" >
-            
-            </mat-form-field>
-            <mat-form-field class="example-form-field">
-                <mat-label>Email</mat-label>
-                <input matInput type="text" >
-            
-            </mat-form-field>
-            <mat-form-field class="example-form-field">
-                <mat-label>Password</mat-label>
-                <input matInput type="password" >
-            
-            </mat-form-field>
+            <form [formGroup]="registerLogin" fxLayout="column" fxLayoutAlign="center center">
+                <mat-form-field class="example-form-field">
+                    <mat-label>First name</mat-label>
+                    <input matInput type="text" formControlName="first_name">
+                
+                </mat-form-field>
+                <mat-form-field class="example-form-field">
+                    <mat-label>Last name</mat-label>
+                    <input matInput type="text" formControlName="last_name">
+                
+                </mat-form-field>
+                <mat-form-field class="example-form-field">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="text" formControlName="email">
+                
+                </mat-form-field>
+                <mat-form-field class="example-form-field">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                
+                </mat-form-field>
+            </form>
             <div >
                 
                 <button mat-raised-button color="primary" class="button" (click)="navigationToLogin()">Register</button>

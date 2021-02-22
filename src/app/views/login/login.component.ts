@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   public userLogin : FormGroup;
 
   public usersList : Array<any>=[];
+  public dataSession =[];
   
   constructor(
     private fb : FormBuilder,
@@ -26,10 +27,7 @@ export class LoginComponent implements OnInit {
         password : ['', Validators.required]
       });
     
-      this.userservice.getAllUsers().subscribe((users : any)=>{
-        console.log(users);
-        this.usersList = users;
-      });
+      
    }
 
   ngOnInit(): void {
@@ -37,7 +35,20 @@ export class LoginComponent implements OnInit {
 
   navigationToList() : void
   {
-    this.router.navigateByUrl('/list');
+    this.userservice.login(this.userLogin.value.email,this.userLogin.value.password).subscribe((data:any)=>{
+      console.log(data);
+      
+
+      if(data.data.session!=null)
+      {
+        this.dataSession = data;
+        this.router.navigateByUrl('/list');
+      }
+      else{
+        console.log("Error");
+      }
+    })
+    
   }
 
 }

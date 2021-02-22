@@ -1,8 +1,7 @@
 <div>
-    <mat-list role="list">
-        <mat-list-item role="listitem">Item 1</mat-list-item>
-        <mat-list-item role="listitem">Item 2</mat-list-item>
-        <mat-list-item role="listitem">Item 3</mat-list-item>
+    <mat-list role="list" *ngFor="let item of usersList">
+        <mat-list-item role="listitem">{{item.firstName}}</mat-list-item>
+        
     </mat-list>
     <div>
         <a href="#">Cerrar sessión</a>
